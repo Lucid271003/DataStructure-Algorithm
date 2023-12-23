@@ -14,7 +14,7 @@ public class Main {
             System.out.println("1. Choose system to send message");
             System.out.println("2. Connect systems");
             System.out.println("3. Check Connect");
-            System.out.println("4. Receive message from connected system");
+            System.out.println("4. Receive message from connec7ted system");
             System.out.println("5. Check Inbox");
             System.out.println("6. Disconnect systems");
             System.out.println("7. Exit program");
@@ -79,7 +79,7 @@ public class Main {
                     break;
                 case 6:
                     System.out.println("Disconnecting systems...");
-                    systemA.disconnectFromB(systemB);
+                    systemA.disconnectWithB(systemB);
                     break;
                 case 7:
                     System.out.println("Exiting program. Goodbye!");
