@@ -42,19 +42,6 @@ public class Stack<E> implements AbstractStack<E> {
     }
 
     @Override
-    public E peek() {
-        if(isEmpty()){
-            throw new NoSuchElementException();
-        }
-        return top.element;
-    }
-
-    @Override
-    public int size() {
-        return size;
-    }
-
-    @Override
     public boolean isEmpty() {
         if(top == null && size == 0){
             return true;

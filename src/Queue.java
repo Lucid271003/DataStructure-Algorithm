@@ -59,19 +59,6 @@ public class Queue<E> implements AbstractQueue<E> {
     }
 
     @Override
-    public E peek() {
-        if(isEmpty()){
-            throw new NoSuchElementException();
-        }
-        return head.element;
-    }
-
-    @Override
-    public int size() {
-        return size;
-    }
-
-    @Override
     public boolean isEmpty() {
         if(head == null && tail == null){
             return true;
