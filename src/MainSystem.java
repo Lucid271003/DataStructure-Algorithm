@@ -68,12 +68,12 @@ public class MainSystem {
             System.out.println("Error: Empty message. Please enter a valid message.");
             return;
         }
-        if (message.length() > 10) {
+        if (message.length() > 250) {
             System.out.println("Message length exceeds 10 characters. Truncating...");
             // Truncate the message and send smaller messages
             int startIndex = 0;
             while (startIndex < message.length()) {
-                int endIndex = Math.min(startIndex + 10, message.length());
+                int endIndex = Math.min(startIndex + 250, message.length());
                 String truncatedMessage = message.substring(startIndex, endIndex);
                 outboxQueueA.offer(truncatedMessage);
                 System.out.println("Sending message: " + truncatedMessage);
@@ -119,9 +119,9 @@ public class MainSystem {
     public void receiveMessageFromB(MainSystem systemB) {
         long startTime = System.nanoTime();
         if (connectedToB != null) {
-            if (!connectedToB.outboxQueueB.isEmpty()) {
-                while (!connectedToB.outboxQueueB.isEmpty()) {
-                    inboxQueueA.offer(connectedToB.outboxQueueB.poll());
+            if (!systemB.outboxQueueB.isEmpty()) {
+                while (!systemB.outboxQueueB.isEmpty()) {
+                    inboxQueueA.offer(systemB.outboxQueueB.poll());
                 }
                 System.out.println("Received messages from System B and stored in System A inbox: " + inboxQueueA);
             } else {
@@ -138,9 +138,9 @@ public class MainSystem {
     public void receiveMessageFromA(MainSystem systemA) {
         long startTime = System.nanoTime();
         if (connectedToA != null) {
-            if (!connectedToA.outboxQueueA.isEmpty()) {
-                while (!connectedToA.outboxQueueA.isEmpty()) {
-                    inboxQueueB.offer(connectedToA.outboxQueueA.poll());
+            if (!systemA.outboxQueueA.isEmpty()) {
+                while (!systemA.outboxQueueA.isEmpty()) {
+                    inboxQueueB.offer(systemA.outboxQueueA.poll());
                 }
                 System.out.println("Received messages from System A and stored in System B inbox: " + inboxQueueB);
             } else {
