@@ -45,6 +45,7 @@ public class MainSystem {
             System.out.println("Systems are not connected.");
         }
     }
+
     public void disconnectWithA(MainSystem systemA) { // B
         if (connectedToA != null) {
             connectedToA = null;
@@ -61,8 +62,8 @@ public class MainSystem {
         }
     }
 
-        public void sendMessageToSystemB(String message) {
-            long startTime = System.nanoTime();
+    public void sendMessageToSystemB(String message) {
+        long startTime = System.nanoTime();
         if (message.isEmpty()) {
             System.out.println("Error: Empty message. Please enter a valid message.");
             return;
@@ -83,9 +84,9 @@ public class MainSystem {
             outboxQueueA.offer(message);
             System.out.println("Sending message: " + message);
         }
-            long endTime = System.nanoTime();
-            long elapsedTime = endTime - startTime;
-            System.out.println("Time spent: " + elapsedTime + " nanoseconds");
+        long endTime = System.nanoTime();
+        long elapsedTime = endTime - startTime;
+        System.out.println("Time spent: " + elapsedTime + " nanoseconds");
     }
 
     public void sendMessageToSystemA(String message) {
