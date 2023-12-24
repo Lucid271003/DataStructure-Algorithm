@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -19,34 +20,66 @@ public class Main {
             System.out.println("6. Disconnect systems");
             System.out.println("7. Exit program");
 
-            System.out.print("Input your choice: ");
-            choice = scanner.nextInt();
-            scanner.nextLine(); // consume newline
+            while (true) {
+                System.out.print("Input your choice: ");
+                if (scanner.hasNextInt()) {
+                    choice = scanner.nextInt();
+                    scanner.nextLine(); // consume newline
+                    break; // Break the loop if a valid integer is entered
+                } else {
+                    System.out.println("Invalid input. Please enter a valid number.");
+                    scanner.nextLine(); // Clear the input buffer
+                }
+            }
 
             switch (choice) {
                 case 1:
-                    System.out.println("Choosing system to send message...");
-                    System.out.println("Choose system to send message:");
-                    System.out.println("1. System A");
-                    System.out.println("2. System B");
-                    int systemChoice = scanner.nextInt();
-                    scanner.nextLine(); // consume newline
+                    try {
+                        System.out.println("Choosing system to send message...");
+                        System.out.println("Choose system to send message:");
+                        System.out.println("1. System A");
+                        System.out.println("2. System B");
 
-                    System.out.println("Enter number of messages to send:");
-                    int numMessages = scanner.nextInt();
-                    scanner.nextLine(); // consume newline
-
-                    for (int i = 0; i < numMessages; i++) {
-                        System.out.println("Enter message(s):");
-                        String message = scanner.nextLine();
-
-                        if (systemChoice == 1) {
-                            systemA.sendMessageToSystemB(message);
-                        } else if (systemChoice == 2) {
-                            systemB.sendMessageToSystemA(message);
-                        } else {
-                            System.out.println("Invalid system choice.");
+                        int systemChoice;
+                        while (true) {
+                            System.out.print("Enter a system to send: ");
+                            if (scanner.hasNextInt()) {
+                                systemChoice = scanner.nextInt();
+                                scanner.nextLine(); // consume newline
+                                break; // Break the loop if a valid integer is entered
+                            } else {
+                                System.out.println("Invalid input. Please enter a valid number.");
+                                scanner.nextLine(); // Clear the input buffer
+                            }
                         }
+
+                        int numMessages;
+                        while (true) {
+                            System.out.print("Enter number of messages to send: ");
+                            if (scanner.hasNextInt()) {
+                                numMessages = scanner.nextInt();
+                                scanner.nextLine(); // consume newline
+                                break; // Break the loop if a valid integer is entered
+                            } else {
+                                System.out.println("Invalid input. Please enter a valid number.");
+                                scanner.nextLine(); // Clear the input buffer
+                            }
+                        }
+
+                        for (int i = 0; i < numMessages; i++) {
+                            System.out.println("Enter message(s):");
+                            String message = scanner.nextLine();
+
+                            if (systemChoice == 1) {
+                                systemA.sendMessageToSystemB(message);
+                            } else if (systemChoice == 2) {
+                                systemB.sendMessageToSystemA(message);
+                            } else {
+                                System.out.println("Invalid system choice.");
+                            }
+                        }
+                    } catch (Exception e) {
+                        System.out.println("An unexpected error occurred: " + e.getMessage());
                     }
                     break;
                 case 2:
@@ -63,8 +96,18 @@ public class Main {
                     System.out.println("1. System A");
                     System.out.println("2. System B");
 
-                    int systemChoiceMessage = scanner.nextInt();
-                    scanner.nextLine(); // consume newline
+                    int systemChoiceMessage;
+                    while (true) {
+                        System.out.print("Enter a system to receive: ");
+                        if (scanner.hasNextInt()) {
+                            systemChoiceMessage = scanner.nextInt();
+                            scanner.nextLine(); // consume newline
+                            break; // Break the loop if a valid integer is entered
+                        } else {
+                            System.out.println("Invalid input. Please enter a valid number.");
+                            scanner.nextLine(); // Clear the input buffer
+                        }
+                    }
 
                     if (systemChoiceMessage == 1) {
                         systemA.receiveMessageFromB(systemB);
