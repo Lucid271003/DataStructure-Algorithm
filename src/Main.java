@@ -15,7 +15,7 @@ public class Main {
             System.out.println("1. Choose system to send message");
             System.out.println("2. Connect systems");
             System.out.println("3. Check Connect");
-            System.out.println("4. Receive message from connec7ted system");
+            System.out.println("4. Receive message from connected system");
             System.out.println("5. Check Inbox");
             System.out.println("6. Disconnect systems");
             System.out.println("7. Exit program");
@@ -46,36 +46,43 @@ public class Main {
                             if (scanner.hasNextInt()) {
                                 systemChoice = scanner.nextInt();
                                 scanner.nextLine(); // consume newline
-                                break; // Break the loop if a valid integer is entered
+
+                                if (systemChoice >= 1 && systemChoice <= 2) {
+                                    break; // Lựa chọn hợp lệ, thoát khỏi vòng lặp
+                                } else {
+                                    System.out.println("Invalid system choice. Please choose 1 or 2.");
+                                }
                             } else {
                                 System.out.println("Invalid input. Please enter a valid number.");
                                 scanner.nextLine(); // Clear the input buffer
                             }
                         }
 
-                        int numMessages;
-                        while (true) {
-                            System.out.print("Enter number of messages to send: ");
-                            if (scanner.hasNextInt()) {
-                                numMessages = scanner.nextInt();
-                                scanner.nextLine(); // consume newline
-                                break; // Break the loop if a valid integer is entered
-                            } else {
-                                System.out.println("Invalid input. Please enter a valid number.");
-                                scanner.nextLine(); // Clear the input buffer
+                        if (systemChoice == 1 || systemChoice == 2) {
+                            int numMessages;
+                            while (true) {
+                                System.out.print("Enter number of messages to send: ");
+                                if (scanner.hasNextInt()) {
+                                    numMessages = scanner.nextInt();
+                                    scanner.nextLine(); // consume newline
+                                    break; // Break the loop if a valid integer is entered
+                                } else {
+                                    System.out.println("Invalid input. Please enter a valid number.");
+                                    scanner.nextLine(); // Clear the input buffer
+                                }
                             }
-                        }
 
-                        for (int i = 0; i < numMessages; i++) {
-                            System.out.println("Enter message(s):");
-                            String message = scanner.nextLine();
+                            for (int i = 0; i < numMessages; i++) {
+                                System.out.println("Enter message(s):");
+                                String message = scanner.nextLine();
 
-                            if (systemChoice == 1) {
-                                systemA.sendMessageToSystemB(message);
-                            } else if (systemChoice == 2) {
-                                systemB.sendMessageToSystemA(message);
-                            } else {
-                                System.out.println("Invalid system choice.");
+                                if (systemChoice == 1) {
+                                    systemA.sendMessageToSystemB(message);
+                                } else if (systemChoice == 2) {
+                                    systemB.sendMessageToSystemA(message);
+                                } else {
+                                    System.out.println("Invalid system choice.");
+                                }
                             }
                         }
                     } catch (Exception e) {
