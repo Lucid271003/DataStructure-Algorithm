@@ -62,13 +62,16 @@ public class Main {
                             int numMessages;
                             while (true) {
                                 System.out.print("Enter number of messages to send: ");
-                                if (scanner.hasNextInt()) {
-                                    numMessages = scanner.nextInt();
-                                    scanner.nextLine(); // consume newline
-                                    break; // Break the loop if a valid integer is entered
-                                } else {
+                                String input = scanner.nextLine();
+                                try {
+                                    numMessages = Integer.parseInt(input);
+                                    if (numMessages > 0) {
+                                        break;
+                                    } else {
+                                        System.out.println("Invalid input. Please enter a valid positive number.");
+                                    }
+                                } catch (NumberFormatException e) {
                                     System.out.println("Invalid input. Please enter a valid number.");
-                                    scanner.nextLine(); // Clear the input buffer
                                 }
                             }
 
@@ -84,6 +87,7 @@ public class Main {
                                     System.out.println("Invalid system choice.");
                                 }
                             }
+                            System.out.println("Successfully sent " + numMessages + " message(s).");
                         }
                     } catch (Exception e) {
                         System.out.println("An unexpected error occurred: " + e.getMessage());

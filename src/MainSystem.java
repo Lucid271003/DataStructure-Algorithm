@@ -134,7 +134,7 @@ public class MainSystem {
                     while (!systemB.outboxQueueB.isEmpty()) {
                         inboxQueueA.offer(systemB.outboxQueueB.poll());
                     }
-                    System.out.println("Received messages from System B and stored in System A inbox: " + inboxQueueA);
+                    System.out.println("Received messages from System B and stored in System A inbox: \n" + inboxQueueA);
                 } else {
                     System.out.println("System B outbox is empty. No messages to receive.");
                 }
@@ -183,9 +183,13 @@ public class MainSystem {
     }
 
     private void processIncomingMessages(Queue<String> inboxQueue, Stack<String> processingStack) {
+        long startTime = System.nanoTime();
         while (!inboxQueue.isEmpty()) {
             processingStack.push(inboxQueue.poll());
         }
+        long endTime = System.nanoTime();
+        long elapsedTime = endTime - startTime;
+        System.out.println("Time spent: " + elapsedTime + " nanoseconds");
     }
 
     private void readIncomingMessages(Stack<String> processingStack) {
