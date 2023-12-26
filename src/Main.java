@@ -81,10 +81,8 @@ public class Main {
 
                                 if (systemChoice == 1) {
                                     systemA.sendMessageToSystemB(message);
-                                } else if (systemChoice == 2) {
-                                    systemB.sendMessageToSystemA(message);
                                 } else {
-                                    System.out.println("Invalid system choice.");
+                                    systemB.sendMessageToSystemA(message);
                                 }
                             }
                             System.out.println("Successfully sent " + numMessages + " message(s).");
@@ -113,7 +111,12 @@ public class Main {
                         if (scanner.hasNextInt()) {
                             systemChoiceMessage = scanner.nextInt();
                             scanner.nextLine(); // consume newline
-                            break; // Break the loop if a valid integer is entered
+
+                            if (systemChoiceMessage >= 1 && systemChoiceMessage <= 2) {
+                                break; // Lựa chọn hợp lệ, thoát khỏi vòng lặp
+                            } else {
+                                System.out.println("Invalid system choice. Please choose 1 or 2.");
+                            }
                         } else {
                             System.out.println("Invalid input. Please enter a valid number.");
                             scanner.nextLine(); // Clear the input buffer
@@ -122,10 +125,8 @@ public class Main {
 
                     if (systemChoiceMessage == 1) {
                         systemA.receiveMessageFromB(systemB);
-                    } else if (systemChoiceMessage == 2) {
-                        systemB.receiveMessageFromA(systemA);
                     } else {
-                        System.out.println("Invalid system choice.");
+                        systemB.receiveMessageFromA(systemA);
                     }
                     break;
                 case 5:

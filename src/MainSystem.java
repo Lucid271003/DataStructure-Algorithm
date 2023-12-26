@@ -183,13 +183,9 @@ public class MainSystem {
     }
 
     private void processIncomingMessages(Queue<String> inboxQueue, Stack<String> processingStack) {
-        long startTime = System.nanoTime();
         while (!inboxQueue.isEmpty()) {
             processingStack.push(inboxQueue.poll());
         }
-        long endTime = System.nanoTime();
-        long elapsedTime = endTime - startTime;
-        System.out.println("Time spent: " + elapsedTime + " nanoseconds");
     }
 
     private void readIncomingMessages(Stack<String> processingStack) {
