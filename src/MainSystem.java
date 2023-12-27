@@ -66,7 +66,7 @@ public class MainSystem {
         long startTime = System.nanoTime();
         try {
             if (message.isEmpty()) {
-                throw new NullPointerException("Error: Empty message. Please enter a valid message.");
+                throw new NullPointerException("Empty message. Please enter a valid message.");
             }
             if (message.length() > 250) {
                 System.out.println("Message length exceeds 250 characters. Truncating...");

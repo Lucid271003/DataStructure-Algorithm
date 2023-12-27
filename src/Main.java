@@ -76,7 +76,7 @@ public class Main {
                             }
 
                             for (int i = 0; i < numMessages; i++) {
-                                System.out.println("Enter message(s):");
+                                System.out.print("Enter message(s): ");
                                 String message = scanner.nextLine();
 
                                 if (systemChoice == 1) {
