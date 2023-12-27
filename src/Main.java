@@ -80,9 +80,9 @@ public class Main {
                                 String message = scanner.nextLine();
 
                                 if (systemChoice == 1) {
-                                    systemA.sendMessageToSystemB(message);
+                                    systemA.sendMessage(message);
                                 } else {
-                                    systemB.sendMessageToSystemA(message);
+                                    systemB.sendMessage(message);
                                 }
                             }
 //                            System.out.println("Successfully sent " + numMessages + " message(s).");
@@ -93,11 +93,11 @@ public class Main {
                     break;
                 case 2:
                     System.out.println("Connecting systems...");
-                    systemA.connectToB(systemB);
+                    systemA.connect(systemB);
                     break;
                 case 3:
                     System.out.println("Check Connect...");
-                    systemA.checkConnect(systemA, systemB);
+                    systemA.checkConnect(systemB);
                     break;
                 case 4:
                     System.out.println("Receiving message from connected system...");
@@ -113,7 +113,7 @@ public class Main {
                             scanner.nextLine(); // consume newline
 
                             if (systemChoiceMessage >= 1 && systemChoiceMessage <= 2) {
-                                break; // Lựa chọn hợp lệ, thoát khỏi vòng lặp
+                                break;
                             } else {
                                 System.out.println("Invalid system choice. Please choose 1 or 2.");
                             }
@@ -124,17 +124,44 @@ public class Main {
                     }
 
                     if (systemChoiceMessage == 1) {
-                        systemA.receiveMessageFromB(systemB);
+                        systemA.receiveMessage(systemB);
                     } else {
-                        systemB.receiveMessageFromA(systemA);
+                        systemB.receiveMessage(systemA);
                     }
                     break;
                 case 5:
-                    systemA.checkInbox(systemA, systemB);
+                    System.out.println("Checking Inbox...");
+                    System.out.println("Choose system to check inbox:");
+                    System.out.println("1. System A");
+                    System.out.println("2. System B");
+
+                    int systemChoiceInbox;
+                    while (true) {
+                        System.out.print("Enter a system to check inbox: ");
+                        if (scanner.hasNextInt()) {
+                            systemChoiceInbox = scanner.nextInt();
+                            scanner.nextLine(); // consume newline
+
+                            if (systemChoiceInbox >= 1 && systemChoiceInbox <= 2) {
+                                break; // Lựa chọn hợp lệ, thoát khỏi vòng lặp
+                            } else {
+                                System.out.println("Invalid system choice. Please choose 1 or 2.");
+                            }
+                        } else {
+                            System.out.println("Invalid input. Please enter a valid number.");
+                            scanner.nextLine(); // Clear the input buffer
+                        }
+                    }
+
+                    if (systemChoiceInbox == 1) {
+                        systemA.checkInbox();
+                    } else {
+                        systemB.checkInbox();
+                    }
                     break;
                 case 6:
                     System.out.println("Disconnecting systems...");
-                    systemA.disconnectWithB(systemB);
+                    systemA.disconnect(systemB);
                     break;
                 case 7:
                     System.out.println("Exiting program. Goodbye!");
