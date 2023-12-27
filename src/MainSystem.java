@@ -46,19 +46,19 @@ public class MainSystem {
         }
     }
 
-    public void disconnectWithA(MainSystem systemA) { // B
-        if (connectedToA != null) {
-            connectedToA = null;
-            System.out.println("Disconnected from System A.");
-            systemA.disconnectWithB(this);
-        }
-    }
-
     public void disconnectWithB(MainSystem systemB) { // A
         if (connectedToB != null) {
             connectedToB = null;
             System.out.println("Disconnected from System B.");
             systemB.disconnectWithA(this);
+        }
+    }
+
+    public void disconnectWithA(MainSystem systemA) { // B
+        if (connectedToA != null) {
+            connectedToA = null;
+            System.out.println("Disconnected from System A.");
+            systemA.disconnectWithB(this);
         }
     }
 
