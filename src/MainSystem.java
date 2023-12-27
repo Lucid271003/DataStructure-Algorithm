@@ -21,19 +21,19 @@ public class MainSystem {
         this.connectedToB = null;
     }
 
-    public void connectToA(MainSystem systemA) { // B
-        if (connectedToA == null) {
-            connectedToA = systemA;
-            System.out.println("System B Connected to System A.");
-            systemA.connectToB(this);
-        }
-    }
-
     public void connectToB(MainSystem systemB) { // A
         if (connectedToB == null) {
             connectedToB = systemB;
             System.out.println("System A Connected to System B.");
             systemB.connectToA(this);
+        }
+    }
+
+    public void connectToA(MainSystem systemA) { // B
+        if (connectedToA == null) {
+            connectedToA = systemA;
+            System.out.println("System B Connected to System A.");
+            systemA.connectToB(this);
         }
     }
 
