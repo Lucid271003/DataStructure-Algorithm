@@ -85,7 +85,7 @@ public class Main {
                                     systemB.sendMessageToSystemA(message);
                                 }
                             }
-                            System.out.println("Successfully sent " + numMessages + " message(s).");
+//                            System.out.println("Successfully sent " + numMessages + " message(s).");
                         }
                     } catch (Exception e) {
                         System.out.println("An unexpected error occurred: " + e.getMessage());

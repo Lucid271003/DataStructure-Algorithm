@@ -69,17 +69,15 @@ public class Queue<E> implements AbstractQueue<E> {
     @Override
     public String toString(){
         StringBuilder result = new StringBuilder();
-        result.append("[");
         Node<E> current = head;
 
         while (current != null){
             result.append(current.element);
             if(current.next != null){
-                result.append(", ");
+                result.append("\n");
             }
             current = current.next;
         }
-        result.append("]");
         return result.toString();
     }
     @Override
