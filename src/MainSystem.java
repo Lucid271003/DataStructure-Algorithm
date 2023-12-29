@@ -25,7 +25,7 @@ public class MainSystem {
 
     public void checkConnect(MainSystem system) {
         if (connected != null && system.connected != null) {
-            System.out.println("Both systems is connected.");
+            System.out.println("Both systems are connected.");
         } else {
             System.out.println("Both systems not connected.");
         }
